@@ -59,7 +59,7 @@ const navData = [
     { text: '生活', path: '/home/live',},
 ];
 
-// 底部footerServiceDate
+// 底部产品服务列表 footerServiceDate
 const footerServiceDate = [
     {path:'',imgSrc:'https://fms.res.meizu.com/dms/2018/12/26/237d883a-d669-4231-b645-d0363ac3f1df.jpg'},
     {path:'',imgSrc:'https://fms.res.meizu.com/dms/2018/12/26/44d9807b-1240-4637-aaef-43e1f6742f81.jpg'},

@@ -52,7 +52,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 5vw 3vw;
+    padding: 5% 3%;
 }
 
 .index-hot-site ul li img{
@@ -69,7 +69,7 @@
     width: 50%;
 }
 .index-banner .row img{
-    width: 50vw;
+    width: 100%;
 }
 
 .section-phone-box .section-title h3{
@@ -117,16 +117,26 @@
 .phone-list .phone-content .phone-info p {
     margin-bottom: .5em;
 }
+.phone-list .phone-content .phone-info .phone-slogan {
+    overflow: hidden;
+    text-overflow: ellipsis; /*当对象内文本溢出时显示省略标记（...）*/
+    white-space:nowrap; /*文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止 */
+    margin: 0 1rem;
+    color: #999;
+}
 
 .phone-list .phone-content .phone-info .phone-slogan span{
     font-size:.8rem;
-    color: #999;
 }
 
 .phone-content .phone-info .phone-products-name{
     padding-top: .6rem;
     font-size: .95rem;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    padding: 0 1rem;
 }
 
 .phone-content .phone-info  .phone-price{
@@ -144,7 +154,7 @@
     text-align: left;
     flex-direction: row;
     justify-content: space-between;
-    height: 43.88889vw;
+    height: 43.88889%;
 }
 .list-ad .ad img{
     width: 50%;
@@ -189,7 +199,7 @@
     text-align: center;
     padding: 1rem;
     color: #999;
-    font-size: 4.16667vw;
+    font-size: 4.16667%;
 }
 
 .footer{
@@ -307,17 +317,30 @@
     color: #999;
 }
 
+.comment-info .comment-dsc{
+    overflow: hidden; 
+    text-overflow: ellipsis; /*显示省略符号来代表被修剪的文本。*/
+    display: -webkit-box; /*必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。*/
+    -webkit-box-orient: vertical; /*必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。*/
+    -webkit-line-clamp:2 ; /*-webkit-line-clamp用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性*/
+}
+
 .other-footer .footer-swiper-list{
     overflow-x: scroll;  /*左右可滑动*/
     overflow-y: hidden;
     white-space: nowrap; /*文本不会换行，文本会在在同一行上继续*/
     margin-bottom: .4rem;
- 
-    scrollbar-width: none; /* Firefox 隐藏元素滚动条*/
-    -ms-overflow-style: none; /* IE 10+ 隐藏元素滚动条*/
 }
-.other-footer .footer-swiper-list::-webkit-scrollbar {
-    display: none; /* Chrome Safari 隐藏元素滚动条*/
+
+/* 滚动条，电脑端显示，手机端隐藏 */
+@media (max-width: 768px) {
+    .other-footer .footer-swiper-list::-webkit-scrollbar {
+        display: none; /* Chrome Safari 手机端隐藏元素滚动条*/
+    }
+    .other-footer .footer-swiper-list{
+        scrollbar-width: none; /* Firefox 手机端隐藏元素滚动条*/
+        -ms-overflow-style: none; /* IE 10+ 手机端隐藏元素滚动条*/
+    }
 }
 
 .other-footer .footer-swiper-list img {
