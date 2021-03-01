@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>魅族官网 - 魅族 17 系列手机：如你，才华横溢</title>
-<!-- 
+    <!-- 
     <link rel="stylesheet" media="screen and (min-width:780px) and (max-device-width:1200px)" href="../css/pc.css" />
     <link rel="stylesheet" media="screen and (max-width:780px)" href="../css/ipone.css" /> -->
 
@@ -33,7 +33,7 @@
         const { Tabs, Carousel, Card, Button, Avatar, Image } = antd;
         const { TabPane } = Tabs;
         const { Meta } = Card;
-    
+
         const host = window.location.href.split('index')[0]
 
         // 轮播图模板
@@ -165,15 +165,33 @@
         class Footer extends React.Component {
             constructor(props) {
                 super(props);
-                this.state = { click: false };
+                this.state = { 
+                    click: false,
+                    LangChoose:'简体中文',
+                };
                 this.handleClick = this.handleClick.bind(this);
+                this.handleChoose = this.handleChoose.bind(this)
             }
             handleClick() {
                 this.setState({ click: !this.state.click })
 
             }
+            handleChoose(Lang_name){
+                this.setState({ 
+                    click: !this.state.click,
+                    LangChoose: Lang_name 
+                })
+            }
 
             render() {
+                const LangChoose = this.state.LangChoose
+                const Langslist =['English', 'Русский', 'Türkiye', '简体中文']
+                const listItems = Langslist.map((item, index) =>
+                    <li className='lang-choose-item' key={index} ref='LangChoose' onClick={()=>{this.handleChoose(item)}}>
+                        <span className='lang-title'>{item}</span>
+                    </li>
+                )
+
                 return (
                     <div className='footer'>
                         <div className='footer-btns'>
@@ -185,25 +203,13 @@
                                 <span>粤ICP备13003602号-2合字B2-20170010</span><br />
                                 <span>营业执照©2018 Meizu All rights reserved</span>
                             </div>
-                            <div className='lang-choose-container' onClick={this.handleClick}>
+                            <div className='lang-choose-container' >
                                 <div className={this.state.click ? 'lang-choose-wrapper lang-choose-wrapper-active' : 'lang-choose-wrapper'}>
                                     <ul className={this.state.click ? 'lang-choose-list lang-choose-list-active ' : 'lang-choose-list '}>
-                                        <li className='lang-choose-item'>
-                                            <span className='lang-title'>English</span>
+                                        {listItems}
+                                        <li className='lang-choose-item' onClick={this.handleClick}>
+                                            <span className='lang-title'>{LangChoose} <i className='icon-more'></i></span>
                                         </li>
-                                        <li className='lang-choose-item'>
-                                            <span className='lang-title'>Русский</span>
-                                        </li>
-                                        <li className='lang-choose-item'>
-                                            <span className='lang-title'>Türkiye</span>
-                                        </li>
-                                        <li className='lang-choose-item'>
-                                            <span className='lang-title'>简体中文 </span>
-                                        </li>
-                                        <li className='lang-choose-item'>
-                                            <span className='lang-title'>简体中文 <i className='icon-more'></i></span>
-                                        </li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -310,7 +316,7 @@
             const list = props.phoneData.content
             // 底部推荐产品列表一行左右滚动
             const swiperlistItems = list.map((item, index) =>
-                <div className={index+1==list.length?'swiper-li swiper-li-notmargin':'swiper-li'} key={index}>
+                <div className={index + 1 == list.length ? 'swiper-li swiper-li-notmargin' : 'swiper-li'} key={index}>
                     <a href={host + item.path + '/index.html?query=' + item.query} >
                         <img src={item.imgSrc} alt="" width='100%' />
                         <div className='info'>
@@ -367,8 +373,8 @@
                     '配件 - 魅族官网',
                     '生活 - 魅族官网',
                 ]
-                const index = parseInt(e)-1
-                document.title=title[index]
+                const index = parseInt(e) - 1
+                document.title = title[index]
 
             }
 
@@ -383,27 +389,27 @@
                             <Tabs defaultActiveKey="1" onChange={this.handleChange} centered>
                                 <TabPane tab="推荐" key="1">
                                     <LunBoTu viewpagerLists={viewpagerLists} />
-                                    <TuiJie phoneData={phoneData} musicData={musicData} commentsData={commentsData}/>
+                                    <TuiJie phoneData={phoneData} musicData={musicData} commentsData={commentsData} />
                                 </TabPane>
                                 <TabPane tab="手机" key="2">
                                     <OtherTab datalist={cellphoneData} />
-                                    <OtherFooter phoneData={phoneData} footerServiceDate={footerServiceDate}/>
+                                    <OtherFooter phoneData={phoneData} footerServiceDate={footerServiceDate} />
                                 </TabPane>
                                 <TabPane tab="Lipro" key="3">
                                     <OtherTab datalist={cellphoneData} />
-                                    <OtherFooter phoneData={phoneData} footerServiceDate={footerServiceDate}/>
+                                    <OtherFooter phoneData={phoneData} footerServiceDate={footerServiceDate} />
                                 </TabPane>
                                 <TabPane tab="声学" key="4">
                                     <OtherTab datalist={acousticsData} />
-                                    <OtherFooter phoneData={phoneData} footerServiceDate={footerServiceDate}/>
+                                    <OtherFooter phoneData={phoneData} footerServiceDate={footerServiceDate} />
                                 </TabPane>
                                 <TabPane tab="配件" key="5">
                                     <OtherTab datalist={accessoriesData} />
-                                    <OtherFooter phoneData={phoneData} footerServiceDate={footerServiceDate}/>
+                                    <OtherFooter phoneData={phoneData} footerServiceDate={footerServiceDate} />
                                 </TabPane>
                                 <TabPane tab="生活" key="6">
                                     <OtherTab datalist={liveData} />
-                                    <OtherFooter phoneData={phoneData} footerServiceDate={footerServiceDate}/>
+                                    <OtherFooter phoneData={phoneData} footerServiceDate={footerServiceDate} />
                                 </TabPane>
                             </Tabs>
                         </div>
